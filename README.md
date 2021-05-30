@@ -1,5 +1,5 @@
 # Project Overview
-This application is built in spring boot. It is used to get the user's repository information from GitHub. The information consist of 
+This application is built in spring boot. It is used to get the user's repositories information from GitHub which are not fork. The information consist of 
 - Repository Name
 - Owner Name
 - Branch Name with Last Commit SHA. 
