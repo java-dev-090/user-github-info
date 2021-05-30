@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
 
+/**
+ * This Class used to handle all type of Exception in the applictaion and return ExceptionMessage as response.
+ * User can define their own exception and can handle the exception here.
+ */
 @ControllerAdvice
 @Slf4j
 public class ApplicationExceptionHandler {

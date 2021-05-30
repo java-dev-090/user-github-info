@@ -1,0 +1,79 @@
+---
+openapi: 3.0.1
+info:
+  title: GitHub-Info
+  version: 1.0.0
+  description: 'This application is used to fetch GitHub repositories, branches and
+    last commit of users. '
+  termsOfService: https://swagger.io/terms/
+  license:
+    name: Apache 2.0
+    url: https://springdoc.org
+servers:
+  - url: http://localhost:8080
+    description: Generated server url
+paths:
+  "/users/repos/v1/{userName}":
+    get:
+      tags:
+        - user-github-controller
+      operationId: getUserGithubRepos
+      parameters:
+        - name: userName
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/reactor.core.publisher.FluxCom.tui.github.model.GithubRepo"
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/com.tui.github.exception.ExceptionMessage"
+        '406':
+          description: Not Acceptable
+          content:
+            application/json:
+              schema:
+                "$ref": "#/components/schemas/com.tui.github.exception.ExceptionMessage"
+components:
+  schemas:
+    reactor.core.publisher.FluxCom.tui.github.model.GithubRepo:
+      type: object
+      properties:
+        prefetch:
+          type: integer
+          format: int32
+    com.tui.github.model.GithubRepo:
+      type: object
+      properties:
+        name:
+          type: string
+        ownerLogin:
+          type: string
+        branch:
+          type: array
+          items:
+            "$ref": "#/components/schemas/com.tui.github.model.Branch"
+    com.tui.github.model.Branch:
+      type: object
+      properties:
+        name:
+          type: string
+        sha:
+          type: string
+    com.tui.github.model.ExceptionMessage:
+      type: object
+      properties:
+        status:
+          type: integer
+          format: int32
+        message:
+          type: string
