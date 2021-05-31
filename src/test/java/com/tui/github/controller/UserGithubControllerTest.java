@@ -35,30 +35,16 @@ public class UserGithubControllerTest {
     @Test
     @DisplayName("Success 200")
     public void testGetUsersGithubReposSuccess(){
-        this.getStubFor(".*/test/.*","response-200.json", HttpStatus.OK.value());
 
+        this.getStubFor(".*/test/.*","success-200.json", HttpStatus.OK.value());
         this.webTestClient
                 .get()
                 .uri("/users/repos/v1/test")
                 .header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody().jsonPath("$.length()").isEqualTo(5)
+                .expectBody().jsonPath("$.length()").isEqualTo(4)
                 .jsonPath("$[0].ownerLogin").isEqualTo("test");
-    }
-
-    @Test
-    @DisplayName("Failed 404")
-    public void testGetUsersGithubReposFailed404(){
-        this.getStubFor(".*/test87656743/.*","response-404.json", HttpStatus.NOT_FOUND.value());
-        this.webTestClient
-                .get()
-                .uri("/users/repos/v1/test87656743")
-                .header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
-                .exchange()
-                .expectStatus().is4xxClientError()
-                .expectBody()
-                .jsonPath("$.status").isEqualTo(HttpStatus.NOT_FOUND.value());
     }
 
     private void getStubFor(String urlRegex, String responseJson, int httpStatus) {

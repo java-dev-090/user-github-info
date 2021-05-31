@@ -21,7 +21,7 @@ public class UserGithubService implements IUserGithubService{
         return webClient.get()
                 .uri("/users/{userName}/repos", userName)
                 .exchangeToFlux(clientResponse -> clientResponse.bodyToFlux(GithubRepo.class))
-                .filter(e->"false".equalsIgnoreCase(e.getIsFork()))
+                .filter(e-> "false".equalsIgnoreCase(e.getIsFork()))
                 .log()
                 .flatMap( github -> {
                     return webClient.get()

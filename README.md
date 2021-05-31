@@ -38,6 +38,16 @@ The request response is :
 ```
 [
   {
+    "name": "Test--01",
+    "ownerLogin": "test",
+    "branch": [
+      {
+        "name": "master",
+        "sha": "60c3b002b742176770fa742ceab323e731966b9a"
+      }
+    ]
+  },
+  {
     "name": "HelloWorld",
     "ownerLogin": "test",
     "branch": [
@@ -52,45 +62,17 @@ The request response is :
     ]
   },
   {
+    "name": "sNews",
+    "ownerLogin": "test",
+    "branch": []
+  },
+  {
     "name": "rokehan",
     "ownerLogin": "test",
     "branch": [
       {
         "name": "master",
         "sha": "54a889cb5438d13c92850edb8e25a793ccec42aa"
-      }
-    ]
-  },
-  {
-    "name": "SDWebImage",
-    "ownerLogin": "test",
-    "branch": [
-      {
-        "name": "2.0-compat",
-        "sha": "95ef42d48c979223b3414c5a50ebee40659c9663"
-      },
-      {
-        "name": "master",
-        "sha": "8b37b16f4583bc8b8c5e12b68f1eb10d198528a2"
-      },
-      {
-        "name": "refresh-cached-pull-request-326",
-        "sha": "eed78e37e8664ded1047b1261244cf30a67356e5"
-      }
-    ]
-  },
-  {
-    "name": "sNews",
-    "ownerLogin": "test",
-    "branch": []
-  },
-  {
-    "name": "Test--01",
-    "ownerLogin": "test",
-    "branch": [
-      {
-        "name": "master",
-        "sha": "60c3b002b742176770fa742ceab323e731966b9a"
       }
     ]
   }
