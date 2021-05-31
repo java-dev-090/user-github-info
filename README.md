@@ -32,7 +32,7 @@ The service request and their responses are as below:
 1. When user provide the existing GitHub user:
 
 ```
-curl -X 'GET' 'http://localhost:8080/user/repos/v1/test' -H 'accept: application/json'
+curl -X 'GET' 'http://localhost:8080/users/repos/v1/test' -H 'accept: application/json'
 ```
 The request response is : 
 ```
@@ -80,7 +80,7 @@ The request response is :
 ```
 2. When user provide the non-existing GitHub user:
 ```
-curl -X 'GET' 'http://localhost:8080/user/repos/v1/test87656743' -H 'accept: application/json'
+curl -X 'GET' 'http://localhost:8080/users/repos/v1/test87656743' -H 'accept: application/json'
 ```
 The request response is: 
 ```
@@ -91,7 +91,7 @@ The request response is:
 ```
 3. When user provide the application/xml in the header:
 ```
-curl -X 'GET' 'http://localhost:8080/user/repos/v1/test' -H 'accept: application/xml'
+curl -X 'GET' 'http://localhost:8080/users/repos/v1/test' -H 'accept: application/xml'
 ```
 The request response is: 
 ```
