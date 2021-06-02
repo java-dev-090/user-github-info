@@ -58,6 +58,20 @@ public class UserGithubControllerTest {
     }
 
     @Test
+    @DisplayName("Failed 404")
+    public void testGetUsersGithubReposFailed404(){
+
+        this.getStubFor(".*/test87656743/.*","failed-404.json", HttpStatus.NOT_FOUND.value());
+        this.webTestClient
+                .get()
+                .uri("/users/repos/v1/test87656743")
+                .header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON_VALUE)
+                .exchange()
+                .expectStatus().is4xxClientError()
+                .expectBody().jsonPath("$.status").isEqualTo(HttpStatus.NOT_FOUND.value());
+    }
+
+    @Test
     @DisplayName("Failed 406")
     public void testGetUsersGithubReposFailed406(){
         this.webTestClient
