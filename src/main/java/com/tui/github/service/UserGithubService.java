@@ -2,6 +2,7 @@ package com.tui.github.service;
 
 import com.tui.github.model.Branch;
 import com.tui.github.model.GithubRepo;
+import org.reactivestreams.Publisher;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
@@ -23,17 +24,19 @@ public class UserGithubService implements IUserGithubService{
                 .exchangeToFlux(clientResponse -> clientResponse.bodyToFlux(GithubRepo.class))
                 .filter(e-> !"true".equals(e.getIsFork()))
                 .log()
-                .flatMap( github -> {
-                    return webClient.get()
-                            .uri("/repos/{userName}/{branchName}/branches", userName,
-                                    github.getName())
-                            .retrieve()
-                            .bodyToFlux(Branch.class)
-                            .log()
-                            .collectList()
-                            .flatMap(branches -> Mono.just(new GithubRepo(github.getName(),
-                                    null, github.getOwnerLogin(), branches)));
-                });
+                .flatMap( github -> getUserGithubRepos(userName,github));
 
+    }
+
+    private Publisher<? extends GithubRepo> getUserGithubRepos(String userName, GithubRepo github) {
+        return webClient.get()
+                .uri("/repos/{userName}/{branchName}/branches", userName,
+                        github.getName())
+                .retrieve()
+                .bodyToFlux(Branch.class)
+                .log()
+                .collectList()
+                .flatMap(branches -> Mono.just(new GithubRepo(github.getName(),
+                        null, github.getOwnerLogin(), branches)));
     }
 }
